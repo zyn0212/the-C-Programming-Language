@@ -19,21 +19,21 @@ int main(int argc, char *argv[])
 			printf("input overflow %d\n", MAX - 1);
 		}
 		revertstr(input, linewidth);
+		printf("%s\n", input);
 	} while( NULL != tmp );
 	return 0;
-}
-static void revert(char *s, int length)
-{
-	if( length > 0 )
-		revert(s + 1, length - 1);
-	printf("%c", *s);
-
 }
 static void revertstr(char *s, int length)
 {
 
-	printf("%d\n", length);
-
-	revert(s, length - 2);
-	putchar(s[length - 1]);
+	char *head = s, *tail = s;
+	while( '\0' != *tail && '\n' != *tail )
+		++tail;
+	--tail;
+	while( head < tail )
+	{
+		*head ^= *tail ^= *head ^= *tail;
+		++head;
+		--tail;
+	}
 }
