@@ -14,11 +14,19 @@ static char *itob(int n, char *s, int b)
 	if( b < 2 || b > 36 )
 		return *s = '\0';
 	char base[37] = "0123456789abcdefghijklmnopqrstuvwxyz", *ret = s, *head = s, *tail = s;
+	char sign = '+';
+	if( n < 0 )
+	{
+		n = -n;
+		sign = '-';
+	}
 	while( n > 0 )
 	{
 		*s++ = base[n % b];
 		n /= b;
 	}
+	if( '-' == sign )
+		*s++ = '-';
 	*s = '\0';
 	tail = --s;
 	while( head < tail )
