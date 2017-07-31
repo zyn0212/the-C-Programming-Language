@@ -2,9 +2,9 @@
 static char *itoa(int n, char *s, int width);
 int main(int argc, char *argv[])
 {
-	int n = 123456;
+	int n = -123456;
 	char s[100] = "543";
-	printf("%d = %s\n", n, itoa(n, s, 7));
+	printf("%d = %s\n", n, itoa(n, s, 17));
 	return 0;
 }
 static char *itoa(int n, char *s, int width)
