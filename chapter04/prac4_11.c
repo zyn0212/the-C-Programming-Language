@@ -1,30 +1,30 @@
 #include <stdio.h>
-#include <string.h>
-#define MAX 200
-static void reverse(char *s);
+#define MAX 100
+static void zungetch(char c);
+static int zgetchar(void);
 int main(int argc, char *argv[])
 {
-	if( 2 != argc ) {
-		printf("wrong argument!\n");
-		return 1;
-	}
 	char s[MAX];
-	strncpy(s, argv[1], MAX - 1);
-	printf("%s\n", s);
-	reverse(s);
-	printf("%s\n", s);
+	int c = 0;
+	zgetchar();
+	zungetch('h');
+	while( EOF != (c = zgetchar()) )
+		putchar(c);
+	putchar('\n');
 	return 0;
 }
-static void reverse(char *s)
+static int length = 0;
+static int zgetchar(void)
 {
-	if( NULL == s || '\0' == *s )
-		return;
-	static int loc = 0, n = 0;
-	char c = s[loc];
-	if( '\0' != s[loc + 1] ) {
-		++loc;
-		reverse(s);
+	int ret = length;
+	if( ret > 0 )
+	{
+		length = 0;
+		return ret;
 	}
-	s[n] = c;
-	s[++n] = '\0';
+	return getchar();
+}
+static void zungetch(char c)
+{
+	length = c;
 }
