@@ -44,9 +44,11 @@ static void detab(int c)
 	}
 	else {
 		++column;
-		for( i = column % TABWIDTH, column = 0; i < TABWIDTH; ++i )
+		for( i = column % TABWIDTH; i < TABWIDTH; ++i )
 			putchar(' ');
 	}
+	if( '\n' == c )
+		column = 0;
 	return;
 }
 static void entab(int c)
@@ -67,5 +69,7 @@ static void entab(int c)
 		status = OUT;
 		count = 0;
 	}
+	if( '\n' == c )
+		column = 0;
 	return;
 }
