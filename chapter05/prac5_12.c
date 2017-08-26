@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
 	}
 	while( EOF != (c = getc(inputfp)) )
 		entab(c);
+	fclose(inputfp);
 	return 0;
 }
 static void detab(int c)
